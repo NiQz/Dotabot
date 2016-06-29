@@ -1,4 +1,9 @@
-// ~createjs ~harbsgames | ...
+// ==ClosureCompiler==
+// @compilation_level ADVANCED_OPTIMIZATIONS
+// @output_file_name default.js
+// @js_externs input; server.Users; user.Roles; user.CurrentGame; user.State; user.Name; role.Name;
+// ==/ClosureCompiler==
+
 if(new RegExp("\\?|help|how").test(input)) {
 	print("Displays some server info and then prints the top X games, where X is the input supplied.\nIf input is ommitted, X = 5.\nIf the input is \"detailed\" then all games are returned.");
 } else {
@@ -9,7 +14,10 @@ if(new RegExp("\\?|help|how").test(input)) {
 		name = user.CurrentGame;
 		isBot = false;
 		for(var z = 0; z < user.Roles.length; z++) {
-			if(user.Roles[z].Name=="Bot")isBot = true;
+			var role = user.Roles[z];
+			if(role.Name == "Bot") {
+				isBot = true;
+			}
 		}
 		
 		if(isBot == false) {
@@ -25,7 +33,7 @@ if(new RegExp("\\?|help|how").test(input)) {
 					Games[name]++;
 				}
 			} else {
-				if(server.Users[u].State != "offline") {
+				if(user.State != "offline") {
 					nullers++;
 				} else {
 					offline++;
@@ -36,18 +44,18 @@ if(new RegExp("\\?|help|how").test(input)) {
 
 	var games = [];
 	for(var a in Games) {
-		games.push([a,Games[a]]);
+		games.push([a, Games[a]]);
 	}
 	
 	games.sort(
-		function(a,b) {
-			if(a[1]==b[1]) {
-				if(String(a[0]).toLowerCase()<String(b[0]).toLowerCase()) {
+		function(a, b) {
+			if(a[1] == b[1]) {
+				if(String(a[0]).toLowerCase() < String(b[0]).toLowerCase()) {
 					return -1;
 				}
 				return 1;
 			}
-			return b[1]-a[1];
+			return b[1] - a[1];
 		}
 	);
 
