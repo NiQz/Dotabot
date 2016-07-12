@@ -1,0 +1,3 @@
+[submodule "Trivia"]
+	path = Trivia
+	url = https://github.com/jackb-p/TriviaDiscord.git
