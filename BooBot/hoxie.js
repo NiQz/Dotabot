@@ -7,8 +7,8 @@ function isInt(value) {
   return (x | 0) === x;
 }
 //if copying this command, change these lines:
-var quotes = ["http://i.imgur.com/5uMiR0E.png","https://cdn.discordapp.com/attachments/143755095895572481/195968925060562947/Screenshot_607.png","​http://i.imgur.com/praiWNh.png","​http://i.imgur.com/lkSHylD.png"];
-var quotesText = ["i'm a thirsty hoe","AND THEN HE LANDED ME THE GREATEST BITCH OF THEM ALL","i eat ass","Smash that pasty"];
+var quotes = ["http://i.imgur.com/5uMiR0E.png","https://cdn.discordapp.com/attachments/143755095895572481/195968925060562947/Screenshot_607.png","​http://i.imgur.com/praiWNh.png","​http://i.imgur.com/lkSHylD.png","https://cdn.discordapp.com/attachments/184322202143948800/197463459548495888/Screenshot_681.png"];
+var quotesText = ["i'm a thirsty hoe","AND THEN HE LANDED ME THE GREATEST BITCH OF THEM ALL","i eat ass","Smash that pasty","nobody loves u aaron u god damn hoe"];
 var thisCommand = "~hoxie"; var userName = "hoxieloxie";
 //stop changing from here.
 var quote = "Quote not found.";
