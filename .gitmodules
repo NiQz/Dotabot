@@ -1,3 +1,6 @@
 [submodule "Trivia"]
 	path = Trivia
 	url = https://github.com/jackb-p/TriviaDiscord.git
+[submodule "Jam"]
+	path = Jam
+	url = https://github.com/DrJam/Jam
