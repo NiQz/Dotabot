@@ -1,7 +1,7 @@
 // ==ClosureCompiler==
 // @compilation_level ADVANCED_OPTIMIZATIONS
 // @output_file_name default.js
-// @js_externs server.Users; input; role.Name; role.Position;
+// @js_externs server.Users; input; usr.Roles; usr.CurrentGame; usr.State; usr.Name; role.Name; role.Position;
 // ==/ClosureCompiler==
 
 function pad_right(str, c, len) {
