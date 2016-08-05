@@ -1,7 +1,7 @@
 // ==ClosureCompiler==
 // @compilation_level ADVANCED_OPTIMIZATIONS
 // @output_file_name default.js
-// @js_externs server.Users; input; user.Roles; user.CurrentGame; user.State; user.Name; role.Name; role.Position;
+// @js_externs server.Users; input; role.Name; role.Position;
 // ==/ClosureCompiler==
 
 function pad_right(str, c, len) {
@@ -27,21 +27,21 @@ for(var a  = 0; a < mmrs.length; a++) {
 }
 
 for(var a = 0; a < server.Users.length; a++) {
-	var user = server.Users[a];
+	var usr = server.Users[a]; // user is a global variable, use usr instead
 	var lowest = 0, mmrSlot = -1, state = -1, game = -1;
-	for(var b = 0; b < user.Roles.length; b++) {
-		var role = user.Roles[b];
+	for(var b = 0; b < usr.Roles.length; b++) {
+		var role = usr.Roles[b];
 		for(var c = 0; c < mmrs.length;c++) {
 			if(role.Name == mmrs[c]) {
 				mmrSlot = c;
 			}
 		}
-		if(role.Position < user.Roles[lowest]) {
+		if(role.Position < usr.Roles[lowest]) {
 			lowest = b;
 		}
 	}
 	
-	switch(user.State) {
+	switch(usr.State) {
 		case "offline": 
 			state = 2;
 			break;
@@ -54,15 +54,15 @@ for(var a = 0; a < server.Users.length; a++) {
 	}
 	
 	var displayGame;
-	if(/dota ?2/i.test(user.CurrentGame)) {
+	if(/dota ?2/i.test(usr.CurrentGame)) {
 		displayGame = "in dota2";
 		game = 0;
-	} else if(user.CurrentGame == null) {	
+	} else if(usr.CurrentGame == null) {	
 		game = 1;
 		if(state == 2) {
 			displayGame="//offline";
 		} else {
-			displayGame="'"+user.State+"'";
+			displayGame="'"+usr.State+"'";
 		}
 	} else {
 		displayGame = "'in another game'";
@@ -70,12 +70,12 @@ for(var a = 0; a < server.Users.length; a++) {
 	}
 	
 	if(mmrSlot >= 0) {
-		var displayName = user.Name.toUpperCase()
+		var displayName = usr.Name.toUpperCase()
 		displayName = displayName.replace(/[\u0250-\ue007]/g, "").trim();
-		if(displayName.length < user.Name.Length-3) {
+		if(displayName.length < usr.Name.Length-3) {
 			displayName = "<GIBBERISH>";
 		}
-		users[mmrSlot].push([displayName, user.Roles[lowest].Name, lowest, user.CurrentGame, game, state, displayGame]);
+		users[mmrSlot].push([displayName, usr.Roles[lowest].Name, lowest, usr.CurrentGame, game, state, displayGame]);
 	}
 }
 
@@ -118,9 +118,9 @@ for(var a = 0; a < mmrs.length;a++) {
 	ops[a].push(temp);
 	ops[a].push([]);
 	for(var b = 0; b < users[a].length; b++) {
-		user = users[a][b];
-		ops[a][1].push(pad_right(user[0], " ", 25) + "│" + user[6] + "\n");
-		totalLength += 26 + user[6].length;
+		usr = users[a][b];
+		ops[a][1].push(pad_right(usr[0], " ", 25) + "│" + usr[6] + "\n");
+		totalLength += 26 + usr[6].length;
 	}
 	totalLength+=126;
 }
